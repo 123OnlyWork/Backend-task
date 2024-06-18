@@ -1,0 +1,44 @@
+/* Стили для формы */
+#sendVerificationCodeForm {
+    width: 100%; /* Ширина формы */
+    max-width: 500px; /* Максимальная ширина формы */
+    margin:auto; /* Центрирование формы по горизонтали */
+    padding: 10px; /* Отступы вокруг формы */
+    border: 2px solid #ccc; /* Пример рамки */
+}
+
+/* Стили для основной группы формы */
+.form-group {
+    margin-bottom: 12px; /* Отступ между группами формы */
+    margin-left: 50px;
+    font-size: 22px;
+    margin-right: 50px;
+}
+
+/* Стили для всех меток (label) в форме */
+label {
+    text-align: center;
+    font-weight: bold; /* Жирный шрифт для меток */
+    display: block; /* Каждая метка на новой строке */
+    margin-bottom: 10px; /* Отступ снизу метки */
+}
+
+/* Стили для всех элементов input в форме */
+input {
+    text-align: center;
+    width: 100%; /* Ширина input на 100% ширины родительского контейнера */
+    padding: 10px; /* Отступы вокруг текстовых полей */
+    font-size: 18px; /* Размер шрифта для input */
+    border: 1px solid #ccc; /* Пример рамки */
+    border-radius: 4px; /* Закругленные углы для input */
+    box-sizing: border-box; /* Учитываем границы и отступы внутри ширины элемента */
+}
+
+/* Дополнительные стили для секции с верификационным кодом */
+#verifyCodeSection {
+    display: none; /* Начально скрываем секцию с верификационным кодом */
+}
+
+.button-wrapper {
+    text-align: center;
+}

@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Проверка электронной почты";
+}
+
+<form id="sendVerificationCodeForm" method="post">
+    <div class="form-group">
+        <label for="EmailAddress">Адрес электронной почты</label>
+        <input id="EmailAddress" class="form-control" type="email" placeholder="Введите адрес электронной почты" required>
+        <span id="emailErrorMessage" class="text-danger"></span>
+    </div>
+        <div class="button-wrapper">
+            <button type="button" id="sendCodeButton" class="btn btn-primary">Отправить код</button>
+        </div>
+    <div id="verifyCodeSection" style="display: none;">
+        <div class="form-group mt-3">
+            <label for="VerificationCode">Код</label>
+            <input id="VerificationCode" class="form-control" type="text" placeholder="Введите верификационный код" required>
+            <span id="verificationCodeErrorMessage" class="text-danger"></span>
+        </div>
+        <div class="button-wrapper">
+            <button type="button" id="verifyCodeButton" class="btn btn-primary">Проверить код</button>
+        </div>
+    </div>
+
+    
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('sendCodeButton').addEventListener('click', function () {
+            var email = document.getElementById('EmailAddress').value;
+            if (!email) {
+                document.getElementById('emailErrorMessage').textContent = 'Адрес электронной почты не может быть пустым!';
+                return;
+            }
+
+            document.getElementById('emailErrorMessage').textContent = '';
+            document.getElementById('verificationCodeErrorMessage').textContent = '';
+
+            fetch('/Home/SendVerificationCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ emailAddress: email })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Проблемы с сетевым соединением');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('verifyCodeSection').style.display = 'block';
+                    document.getElementById('UserMessage').value = data.message;
+                    document.getElementById('messageSection').style.display = 'block';
+                });
+
+        });
+
+        document.getElementById('verifyCodeButton').addEventListener('click', function () {
+            var email = document.getElementById('EmailAddress').value;
+            var verificationCode = document.getElementById('VerificationCode').value;
+
+            if (!verificationCode) {
+                document.getElementById('verificationCodeErrorMessage').textContent = 'Верификационный код не может быть пустым!';
+                return;
+            }
+
+            document.getElementById('verificationCodeErrorMessage').textContent = '';
+
+            fetch('/Home/VerifyCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ EmailAddress: email, Code: verificationCode })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Проблемы с сетевым соединением');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Перенаправляем на страницу поздравлений при успешной верификации
+                        window.location.href = '/Home/Congratulations';
+                    } else {
+                        // Показываем сообщение об ошибке при неверном коде
+                        document.getElementById('verificationCodeErrorMessage').textContent = 'Неверный верификационный код. Пожалуйста, попробуйте еще раз.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Проблема с верификацией кода:', error.message);
+                    alert('Неверный код. Пожалуйста, попробуйте еще раз.');
+                });
+        });
+    });
+</script>
+
+
+
