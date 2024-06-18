@@ -1,42 +1,42 @@
-/* Стили для формы */
+
 #sendVerificationCodeForm {
-    width: 100%; /* Ширина формы */
-    max-width: 500px; /* Максимальная ширина формы */
-    margin:auto; /* Центрирование формы по горизонтали */
-    padding: 10px; /* Отступы вокруг формы */
-    border: 2px solid #ccc; /* Пример рамки */
+    width: 100%;
+    max-width: 500px; 
+    margin:auto; 
+    padding: 10px; 
+    border: 2px solid #ccc; 
 }
 
-/* Стили для основной группы формы */
+
 .form-group {
-    margin-bottom: 12px; /* Отступ между группами формы */
+    margin-bottom: 12px; /* РћС‚СЃС‚СѓРї РјРµР¶РґСѓ РіСЂСѓРїРїР°РјРё С„РѕСЂРјС‹ */
     margin-left: 50px;
     font-size: 22px;
     margin-right: 50px;
 }
 
-/* Стили для всех меток (label) в форме */
+
 label {
     text-align: center;
-    font-weight: bold; /* Жирный шрифт для меток */
-    display: block; /* Каждая метка на новой строке */
-    margin-bottom: 10px; /* Отступ снизу метки */
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 10px; 
 }
 
-/* Стили для всех элементов input в форме */
+
 input {
     text-align: center;
-    width: 100%; /* Ширина input на 100% ширины родительского контейнера */
-    padding: 10px; /* Отступы вокруг текстовых полей */
-    font-size: 18px; /* Размер шрифта для input */
-    border: 1px solid #ccc; /* Пример рамки */
-    border-radius: 4px; /* Закругленные углы для input */
-    box-sizing: border-box; /* Учитываем границы и отступы внутри ширины элемента */
+    width: 100%; 
+    padding: 10px; 
+    font-size: 18px;
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
 }
 
-/* Дополнительные стили для секции с верификационным кодом */
+
 #verifyCodeSection {
-    display: none; /* Начально скрываем секцию с верификационным кодом */
+    display: none; 
 }
 
 .button-wrapper {
